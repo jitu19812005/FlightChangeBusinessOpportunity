@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BAU_EP2MY_SITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Temp-f1">
+          <Key>
+            <PropertyRef Name="flight_id" />
+          </Key>
+          <Property Name="flight_id" Type="float" Nullable="false" />
+          <Property Name="route_id" Type="float" />
+          <Property Name="departure_time" Type="datetime" />
+          <Property Name="arrival_time" Type="datetime" />
+          <Property Name="airline_id" Type="float" />
+        </EntityType>
+        <EntityType Name="Temp-r1">
+          <Key>
+            <PropertyRef Name="route_id" />
+          </Key>
+          <Property Name="route_id" Type="float" Nullable="false" />
+          <Property Name="origin_city_id" Type="float" />
+          <Property Name="destination_city_id" Type="float" />
+          <Property Name="departure_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Temp-s1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agency_id" Type="float" />
+          <Property Name="origin_city_id" Type="float" />
+          <Property Name="destination_city_id" Type="float" />
+        </EntityType>
+        <Function Name="getReasultUsingChangeDetectionAlgo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startdt" Type="datetime" Mode="In" />
+          <Parameter Name="enddt" Type="datetime" Mode="In" />
+          <Parameter Name="agencyid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="BAU_EP2MY_SITModelStoreContainer">
+          <EntitySet Name="Temp-f1" EntityType="Self.Temp-f1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temp-r1" EntityType="Self.Temp-r1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temp-s1" EntityType="Self.Temp-s1" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BAU_EP2MY_SITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="flights">
+          <Key>
+            <PropertyRef Name="flight_id" />
+          </Key>
+          <Property Name="flight_id" Type="Double" Nullable="false" />
+          <Property Name="route_id" Type="Double" />
+          <Property Name="departure_time" Type="DateTime" Precision="3" />
+          <Property Name="arrival_time" Type="DateTime" Precision="3" />
+          <Property Name="airline_id" Type="Double" />
+        </EntityType>
+        <EntityType Name="routes">
+          <Key>
+            <PropertyRef Name="route_id" />
+          </Key>
+          <Property Name="route_id" Type="Double" Nullable="false" />
+          <Property Name="origin_city_id" Type="Double" />
+          <Property Name="destination_city_id" Type="Double" />
+          <Property Name="departure_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="BAU_EP2MY_SITEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="flights" EntityType="BAU_EP2MY_SITModel.flights" />
+          <EntitySet Name="routes" EntityType="BAU_EP2MY_SITModel.routes" />
+          <EntitySet Name="subscriptions" EntityType="BAU_EP2MY_SITModel.subscriptions" />
+          <FunctionImport Name="getReasultUsingChangeDetectionAlgo" EntitySet="flights" ReturnType="Collection(BAU_EP2MY_SITModel.flights)">
+            <Parameter Name="startdt" Mode="In" Type="DateTime" />
+            <Parameter Name="enddt" Mode="In" Type="DateTime" />
+            <Parameter Name="agencyid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="subscriptions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agency_id" Type="Double" />
+          <Property Name="origin_city_id" Type="Double" />
+          <Property Name="destination_city_id" Type="Double" />
+        </EntityType>
+        <ComplexType Name="getReasultUsingChangeDetectionAlgo_Complex" >
+          <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BAU_EP2MY_SITModelStoreContainer" CdmEntityContainer="BAU_EP2MY_SITEntities">
+          <EntitySetMapping Name="flights">
+            <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.flights">
+              <MappingFragment StoreEntitySet="Temp-f1">
+                <ScalarProperty Name="flight_id" ColumnName="flight_id" />
+                <ScalarProperty Name="route_id" ColumnName="route_id" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+                <ScalarProperty Name="arrival_time" ColumnName="arrival_time" />
+                <ScalarProperty Name="airline_id" ColumnName="airline_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="routes">
+            <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.routes">
+              <MappingFragment StoreEntitySet="Temp-r1">
+                <ScalarProperty Name="route_id" ColumnName="route_id" />
+                <ScalarProperty Name="origin_city_id" ColumnName="origin_city_id" />
+                <ScalarProperty Name="destination_city_id" ColumnName="destination_city_id" />
+                <ScalarProperty Name="departure_date" ColumnName="departure_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subscriptions">
+            <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.subscriptions">
+              <MappingFragment StoreEntitySet="Temp-s1">
+                <ScalarProperty Name="destination_city_id" ColumnName="destination_city_id" />
+                <ScalarProperty Name="origin_city_id" ColumnName="origin_city_id" />
+                <ScalarProperty Name="agency_id" ColumnName="agency_id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getReasultUsingChangeDetectionAlgo" FunctionName="BAU_EP2MY_SITModel.Store.getReasultUsingChangeDetectionAlgo" >
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

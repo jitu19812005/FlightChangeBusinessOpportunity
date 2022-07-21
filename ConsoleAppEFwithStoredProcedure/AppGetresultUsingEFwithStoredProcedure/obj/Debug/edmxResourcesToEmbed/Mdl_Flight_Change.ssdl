@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BAU_EP2MY_SITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Temp-f1">
+    <Key>
+      <PropertyRef Name="flight_id" />
+    </Key>
+    <Property Name="flight_id" Type="float" Nullable="false" />
+    <Property Name="route_id" Type="float" />
+    <Property Name="departure_time" Type="datetime" />
+    <Property Name="arrival_time" Type="datetime" />
+    <Property Name="airline_id" Type="float" />
+  </EntityType>
+  <EntityType Name="Temp-r1">
+    <Key>
+      <PropertyRef Name="route_id" />
+    </Key>
+    <Property Name="route_id" Type="float" Nullable="false" />
+    <Property Name="origin_city_id" Type="float" />
+    <Property Name="destination_city_id" Type="float" />
+    <Property Name="departure_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Temp-s1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agency_id" Type="float" />
+    <Property Name="origin_city_id" Type="float" />
+    <Property Name="destination_city_id" Type="float" />
+  </EntityType>
+  <Function Name="getReasultUsingChangeDetectionAlgo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="startdt" Type="datetime" Mode="In" />
+    <Parameter Name="enddt" Type="datetime" Mode="In" />
+    <Parameter Name="agencyid" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="BAU_EP2MY_SITModelStoreContainer">
+    <EntitySet Name="Temp-f1" EntityType="Self.Temp-f1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temp-r1" EntityType="Self.Temp-r1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temp-s1" EntityType="Self.Temp-s1" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

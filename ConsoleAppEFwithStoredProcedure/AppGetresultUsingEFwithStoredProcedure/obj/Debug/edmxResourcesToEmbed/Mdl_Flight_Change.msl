@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BAU_EP2MY_SITModelStoreContainer" CdmEntityContainer="BAU_EP2MY_SITEntities">
+    <EntitySetMapping Name="flights">
+      <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.flights">
+        <MappingFragment StoreEntitySet="Temp-f1">
+          <ScalarProperty Name="flight_id" ColumnName="flight_id" />
+          <ScalarProperty Name="route_id" ColumnName="route_id" />
+          <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+          <ScalarProperty Name="arrival_time" ColumnName="arrival_time" />
+          <ScalarProperty Name="airline_id" ColumnName="airline_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="routes">
+      <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.routes">
+        <MappingFragment StoreEntitySet="Temp-r1">
+          <ScalarProperty Name="route_id" ColumnName="route_id" />
+          <ScalarProperty Name="origin_city_id" ColumnName="origin_city_id" />
+          <ScalarProperty Name="destination_city_id" ColumnName="destination_city_id" />
+          <ScalarProperty Name="departure_date" ColumnName="departure_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subscriptions">
+      <EntityTypeMapping TypeName="BAU_EP2MY_SITModel.subscriptions">
+        <MappingFragment StoreEntitySet="Temp-s1">
+          <ScalarProperty Name="destination_city_id" ColumnName="destination_city_id" />
+          <ScalarProperty Name="origin_city_id" ColumnName="origin_city_id" />
+          <ScalarProperty Name="agency_id" ColumnName="agency_id" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getReasultUsingChangeDetectionAlgo" FunctionName="BAU_EP2MY_SITModel.Store.getReasultUsingChangeDetectionAlgo" />
+  </EntityContainerMapping>
+</Mapping>

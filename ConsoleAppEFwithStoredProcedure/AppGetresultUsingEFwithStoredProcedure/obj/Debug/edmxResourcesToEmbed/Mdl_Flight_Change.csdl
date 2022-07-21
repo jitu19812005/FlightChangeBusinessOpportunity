@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BAU_EP2MY_SITModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="flights">
+    <Key>
+      <PropertyRef Name="flight_id" />
+    </Key>
+    <Property Name="flight_id" Type="Double" Nullable="false" />
+    <Property Name="route_id" Type="Double" />
+    <Property Name="departure_time" Type="DateTime" Precision="3" />
+    <Property Name="arrival_time" Type="DateTime" Precision="3" />
+    <Property Name="airline_id" Type="Double" />
+  </EntityType>
+  <EntityType Name="routes">
+    <Key>
+      <PropertyRef Name="route_id" />
+    </Key>
+    <Property Name="route_id" Type="Double" Nullable="false" />
+    <Property Name="origin_city_id" Type="Double" />
+    <Property Name="destination_city_id" Type="Double" />
+    <Property Name="departure_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="BAU_EP2MY_SITEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="flights" EntityType="BAU_EP2MY_SITModel.flights" />
+    <EntitySet Name="routes" EntityType="BAU_EP2MY_SITModel.routes" />
+    <EntitySet Name="subscriptions" EntityType="BAU_EP2MY_SITModel.subscriptions" />
+    <FunctionImport Name="getReasultUsingChangeDetectionAlgo" EntitySet="flights" ReturnType="Collection(BAU_EP2MY_SITModel.flights)">
+      <Parameter Name="startdt" Mode="In" Type="DateTime" />
+      <Parameter Name="enddt" Mode="In" Type="DateTime" />
+      <Parameter Name="agencyid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="subscriptions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="agency_id" Type="Double" />
+    <Property Name="origin_city_id" Type="Double" />
+    <Property Name="destination_city_id" Type="Double" />
+  </EntityType>
+  <ComplexType Name="getReasultUsingChangeDetectionAlgo_Complex">
+    <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>
